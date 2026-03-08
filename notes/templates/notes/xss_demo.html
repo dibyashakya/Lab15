@@ -1,0 +1,32 @@
+{% comment %} templates/notes/xss_demo/html {% endcomment %}
+
+<!doctype html>
+<html>
+  <head>
+    <title>XSS Demo</title>
+  </head>
+  <body>
+    <h2>XSS - {% if safe %}Secure{% else %}Vulnerable{% endif %}</h2>
+    <p><strong>Name:</strong> Dibya Shakya</p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <input
+        type="text"
+        name="content"
+        size="50"
+        placeholder='Try: <script>alert("XSS")</script>'
+      />
+      <button type="submit">Submit</button>
+    </form>
+
+    {% if output %}
+    <h3>Output:</h3>
+    <div style="border: 2px solid red; padding: 10px">{{ output }}</div>
+    {% endif %}
+
+    <br />
+    <a href="/api/notes/xss-vulnerable/"> Vulnerable</a> |
+    <a href="/api/notes/xss-secure/">Secure</a>
+  </body>
+</html>

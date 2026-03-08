@@ -1,0 +1,36 @@
+{% comment %} templates/notes/env-demo.html {% endcomment %}
+<!doctype html>
+<html>
+  <head>
+    <title>Environment Variables Demo</title>
+  </head>
+  <body>
+    <h2>Secure Environment Variables</h2>
+    <p><strong>Name:</strong> Dibya Shakya</p>
+    <table border="1" cellpadding="8">
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>SECRET_KEY</td>
+        <td><code>{{ secret_key }}</code></td>
+        <td>Loaded from environment</td>
+      </tr>
+      <tr>
+        <td>DEBUG</td>
+        <td><code>{{ debug }}</code></td>
+        <td>Loaded from environment</td>
+      </tr>
+      <tr>
+        <td>ALLOWED_HOSTS</td>
+        <td><code>{{ allowed_hosts }}</code></td>
+        <td>Loaded from environment</td>
+      </tr>
+    </table>
+    <br />
+    <p>Sensitive values are stored in <code>.env</code> file</p>
+    <p>Not hardcoded in <code>settings.py</code></p>
+  </body>
+</html>

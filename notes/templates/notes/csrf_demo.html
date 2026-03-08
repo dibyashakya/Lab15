@@ -1,0 +1,24 @@
+{% comment %} templates/notes/csrf_demo.html {% endcomment %}
+<!doctype html>
+<html>
+  <head>
+    <title>CSRF Demo</title>
+  </head>
+  <body>
+    <h2>CSRF - {% if safe %}Secure{% else %}Vulnerable{% endif %}</h2>
+    <p><strong>Name:</strong> Dibya Shakya</p>
+    <form method="POST">
+      {% if safe %}{% csrf_token %}{% endif %}
+      <input type="text" name="title" placeholder="Enter note title" />
+      <button type="submit">Add Note</button>
+    </form>
+    {% if message %}
+    <p style="color: {% if safe %}green{% else %}red{% endif %};">
+      <strong>{{ message }}</strong>
+    </p>
+    {% endif %}
+    <br />
+    <a href="/api/notes/csrf-vulnerable/">Vulnerable</a> |
+    <a href="/api/notes/csrf-secure/">Secure</a>
+  </body>
+</html>
